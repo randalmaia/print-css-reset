@@ -1,0 +1,58 @@
+/* Print CSS reset
+   Author: @randalmaia
+   - Remove browser footer and header.
+   - Set page margin. 
+*/
+@page{
+	margin:10px;
+}
+
+@media print{
+   
+   /* Set body padding to header and footer */
+   body{
+   	padding: 40px 0;;
+   }
+
+
+   /* All unecessary elements */
+   .your-selectors{
+   		display: none;
+   }
+
+   a[href]:after {
+   		content: " (" attr(href) ")";
+   }
+ 
+   a[href^="#"]:after,
+   a[href^="javascript"]:after {
+   		content: "";
+   }
+
+    /* Fix Header and footer class on page */
+    .footer, 
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 40px;
+        width: 100%;
+        background-color: white;
+        margin-left: 25px;
+    }
+
+    .footer{
+        top: auto;
+        bottom: 0;
+    }
+    
+    @page
+    	counter-increment: page;
+    	counter-reset: page 1;
+    }
+    .footer:after { 
+    	content: "Page " counter(page) " of " counter(pages); 
+    	color: blue;
+    	float: right;
+    }
+}
